@@ -1,22 +1,63 @@
-﻿using System.Collections;
+﻿/*
+
+            Handles the purchaseSpace logic.
+
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
+/// <summary>
+/// A script that is put on the PurchaseSpace canvas.
+/// </summary>
 public class PurchaseSpace : MonoBehaviour
 {
+    /// <summary>
+    /// A text showing how much money you have.
+    /// </summary>
     public Text moneyText;
+    /// <summary>
+    /// A text showing which wave you're at.
+    /// </summary>
     public Text waveText;
+    /// <summary>
+    /// A basicTower prefab.
+    /// </summary>
     public GameObject basicTowerPrefab;
+    /// <summary>
+    /// A teleportPoint prefab.
+    /// </summary>
     public GameObject teleportPointPrefab;
+    /// <summary>
+    /// A wall prefab.
+    /// </summary>
     public GameObject WallPrefab;
+    /// <summary>
+    /// A slowField prefab.
+    /// </summary>
     public GameObject slowFieldPrefab;
+    /// <summary>
+    /// The tower object.
+    /// </summary>
     public static GameObject boughtTower;
+    /// <summary>
+    /// The teleportPoint object.
+    /// </summary>
     public static GameObject teleportPoint;
+    /// <summary>
+    /// The wall object.
+    /// </summary>
     public static GameObject Wall;
+    /// <summary>
+    /// The slowField object.
+    /// </summary>
     public static GameObject slowField;
+    /// <summary>
+    /// The spawner object.
+    /// </summary>
     public GameObject spawner;
 
     void Update()
@@ -25,9 +66,12 @@ public class PurchaseSpace : MonoBehaviour
         waveText.text = "Wave " + spawner.GetComponent<Spawner>().currentWave + "/" + spawner.GetComponent<Spawner>().waves.Count;
     }
 
+    /// <summary>
+    /// Creates the Tower object. Activated when the button is pressed.
+    /// </summary>
     public void BuyBasicTower()
     {
-        if (Money.amount < 40 || boughtTower != null)
+        if (Money.amount < 30 || boughtTower != null)
         {
             return;
         }
@@ -45,9 +89,12 @@ public class PurchaseSpace : MonoBehaviour
         boughtTower.GetComponent<MeshCollider>().enabled = false;
         boughtTower.GetComponentInChildren<MeshCollider>().enabled = false;
 
-        Money.amount -= 40;
+        Money.amount -= 30;
     }
 
+    /// <summary>
+    /// Creates the teleportPoint object. Activated when the button is pressed.
+    /// </summary>
     public void BuyTeleportPoint()
     {
         if (Money.amount < 5 || teleportPoint != null)
@@ -66,6 +113,9 @@ public class PurchaseSpace : MonoBehaviour
         Money.amount -= 5;
     }
 
+    /// <summary>
+    /// Creates the wall object. Activated when the button is pressed.
+    /// </summary>
     public void BuyWall()
     {
         if (Money.amount < 5 || Wall != null)
@@ -83,11 +133,14 @@ public class PurchaseSpace : MonoBehaviour
         color.a = 0.5f;
         Wall.GetComponent<Renderer>().material.color = color;
 
-        
+
 
         Money.amount -= 5;
     }
 
+    /// <summary>
+    /// Creates the slowField object. Activated when the button is pressed.
+    /// </summary>
     public void BuySlowField()
     {
         if (Money.amount < 20 || slowField != null)
@@ -110,6 +163,9 @@ public class PurchaseSpace : MonoBehaviour
         Money.amount -= 20;
     }
 
+    /// <summary>
+    /// Starts the waves. Activated when the button is pressed.
+    /// </summary>
     public void StartWave()
     {
         spawner.GetComponent<Spawner>().IsButtonClicked = true;

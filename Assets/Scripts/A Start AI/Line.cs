@@ -1,7 +1,15 @@
-﻿using System.Collections;
+﻿/*
+
+            Handles the line logic.
+
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A script that is used in other scripts.
+/// </summary>
 public struct Line
 {
     const float verticalLineGradient = 1e5f;

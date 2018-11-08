@@ -1,28 +1,52 @@
-﻿using System.Collections;
+﻿/*
+
+                Handles Pathfinding logic.
+
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
 using System;
 
+/// <summary>
+/// A script that is used on the GameobjectManager.
+/// </summary>
 public class Pathfinding : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to the Requestmanager.
+    /// </summary>
     PathRequestManager requestManager;
-    Grid GridReference;//For referencing the grid class
+    /// <summary>
+    /// Reference to the Gamemanager.
+    /// </summary>
+    Grid GridReference;
 
-    void Awake()//When the program starts
+    void Awake()
     {
         requestManager = GetComponent<PathRequestManager>();
-        GridReference = GetComponent<Grid>();//Get a reference to the game manager
+        GridReference = GetComponent<Grid>();
     }
 
+    /// <summary>
+    /// Starts finding a path.
+    /// </summary>
+    /// <param name="startPos">Startposition of the path.</param>
+    /// <param name="targetPos">Endposition of the path.</param>
     public void StartFindPath(Vector3 startPos, Vector3 targetPos)
     {
         StartCoroutine(FindPath(startPos, targetPos));
     }
 
+    /// <summary>
+    /// Finds the path.
+    /// </summary>
+    /// <param name="a_StartPos">Startposition of the path.</param>
+    /// <param name="a_TargetPos">Endposition of the path.</param>
+    /// <returns>A path.</returns>
     IEnumerator FindPath(Vector3 a_StartPos, Vector3 a_TargetPos)
     {
-
         Vector3[] waypoints = new Vector3[0];
         bool pathSuccess = false;
 
@@ -72,7 +96,6 @@ public class Pathfinding : MonoBehaviour
                         }
                     }
                 }
-
             }
         }
         yield return null;
@@ -83,6 +106,12 @@ public class Pathfinding : MonoBehaviour
         requestManager.FinishedProcessingPath(waypoints, pathSuccess);
     }
 
+    /// <summary>
+    /// Gets the final path.
+    /// </summary>
+    /// <param name="a_StartingNode">The node the path starts on.</param>
+    /// <param name="a_EndNode">The node the path ends on.</param>
+    /// <returns>The final path.</returns>
     Vector3[] GetFinalPath(Node a_StartingNode, Node a_EndNode)
     {
         List<Node> FinalPath = new List<Node>();//List to hold the path sequentially 
@@ -100,14 +129,16 @@ public class Pathfinding : MonoBehaviour
         }
 
         Vector3[] waypoints = SimplifyPath(FinalPath);
-
-
+        
         Array.Reverse(waypoints);//Reverse the path to get the correct order
         return waypoints;
-
-
     }
 
+    /// <summary>
+    /// Simpltfies the path.
+    /// </summary>
+    /// <param name="path">The path to simplify.</param>
+    /// <returns>The simplified path.</returns>
     Vector3[] SimplifyPath(List<Node> path)
     {
         List<Vector3> waypoints = new List<Vector3>();
@@ -125,6 +156,12 @@ public class Pathfinding : MonoBehaviour
         return waypoints.ToArray();
     }
 
+    /// <summary>
+    /// Gets teh manhattenDistance.
+    /// </summary>
+    /// <param name="a_nodeA">Node 1.</param>
+    /// <param name="a_nodeB">Node 2.</param>
+    /// <returns>The sum of the 2 nodes.</returns>
     int GetManhattenDistance(Node a_nodeA, Node a_nodeB)
     {
         int ix = Mathf.Abs(a_nodeA.GridX - a_nodeB.GridX);//x1-x2

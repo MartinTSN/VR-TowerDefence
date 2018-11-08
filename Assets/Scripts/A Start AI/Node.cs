@@ -1,36 +1,80 @@
-﻿using System.Collections;
+﻿/*
+
+            Handles Node logic.
+
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A script that is used in other scripts.
+/// </summary>
 public class Node : IHeapItem<Node>
 {
+    /// <summary>
+    /// X Position in the Node Array
+    /// </summary>
+    public int GridX;
+    /// <summary>
+    /// Y Position in the Node Array
+    /// </summary>
+    public int GridY;
+    /// <summary>
+    /// Tells the program if this node is being obstructed.
+    /// </summary>
+    public bool IsWall;
+    /// <summary>
+    /// The world position of the node.
+    /// </summary>
+    public Vector3 Position;
 
-    public int GridX;//X Position in the Node Array
-    public int GridY;//Y Position in the Node Array
-
-    public bool IsWall;//Tells the program if this node is being obstructed.
-    public Vector3 Position;//The world position of the node.
-
+    /// <summary>
+    /// The movement penalty of the node.
+    /// </summary>
     public int movementPenalty;
 
-    public Node ParentNode;//For the AStar algoritm, will store what node it previously came from so it cn trace the shortest path.
+    /// <summary>
+    /// For the AStar algoritm, will store what node it previously came from so it can trace the shortest path.
+    /// </summary>
+    public Node ParentNode;
 
-    public int gCost;//The cost of moving to the next square.
-    public int hCost;//The distance to the goal from this node.
+    /// <summary>
+    /// The cost of moving to the next square.
+    /// </summary>
+    public int gCost;
+    /// <summary>
+    /// The distance to the goal from this node.
+    /// </summary>
+    public int hCost;
 
+    /// <summary>
+    /// The heapIndex.
+    /// </summary>
     int heapIndex;
 
-    public int FCost//Quick get function to add G cost and H Cost, and since we'll never need to edit FCost, we dont need a set function.
+    /// <summary>
+    /// Get function to add G cost and H Cost.
+    /// </summary>
+    public int FCost
     {
         get { return gCost + hCost; }
     }
 
-    public Node(bool a_IsWall, Vector3 a_Pos, int a_gridX, int a_gridY, int _penalty)//Constructor
+    /// <summary>
+    /// A constructor for the node.
+    /// </summary>
+    /// <param name="a_IsWall">Tells the program if this node is being obstructed.</param>
+    /// <param name="a_Pos">The world position of the node.</param>
+    /// <param name="a_gridX">X Position in the Node Array.</param>
+    /// <param name="a_gridY">Y Position in the Node Array.</param>
+    /// <param name="_penalty">The penalty for the node.</param>
+    public Node(bool a_IsWall, Vector3 a_Pos, int a_gridX, int a_gridY, int _penalty)
     {
-        IsWall = a_IsWall;//Tells the program if this node is being obstructed.
-        Position = a_Pos;//The world position of the node.
-        GridX = a_gridX;//X Position in the Node Array
-        GridY = a_gridY;//Y Position in the Node Array
+        IsWall = a_IsWall;
+        Position = a_Pos;
+        GridX = a_gridX;
+        GridY = a_gridY;
         movementPenalty = _penalty;
     }
 

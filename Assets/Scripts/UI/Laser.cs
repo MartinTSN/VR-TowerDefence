@@ -1,16 +1,27 @@
-﻿using System.Collections;
+﻿/*
+
+            Handles the logic for creating a lazer.
+
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A script that is put on the hands.
+/// </summary>
 public class Laser : MonoBehaviour
 {
-
+    /// <summary>
+    /// A LineRenderer.
+    /// </summary>
     private LineRenderer lr;
+
     void Start()
     {
         lr = GetComponent<LineRenderer>();
     }
-    
+
     void Update()
     {
         Ray raycast = new Ray(gameObject.transform.position, gameObject.transform.forward);

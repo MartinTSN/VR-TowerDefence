@@ -1,12 +1,25 @@
-﻿using System.Collections;
+﻿/*
+
+            Handles the Heap logic.
+
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// A script that is used in other scripts.
+/// </summary>
 public class Heap<T> where T : IHeapItem<T>
 {
-
+    /// <summary>
+    /// Every heap item.
+    /// </summary>
     T[] items;
+    /// <summary>
+    /// The current item-count.
+    /// </summary>
     int currentItemCount;
 
     public Heap(int maxHeapSize)
@@ -14,6 +27,10 @@ public class Heap<T> where T : IHeapItem<T>
         items = new T[maxHeapSize];
     }
 
+    /// <summary>
+    /// Adds a item to the heapIndex.
+    /// </summary>
+    /// <param name="item"></param>
     public void Add(T item)
     {
         item.HeapIndex = currentItemCount;
@@ -22,6 +39,10 @@ public class Heap<T> where T : IHeapItem<T>
         currentItemCount++;
     }
 
+    /// <summary>
+    /// Removes the first item in the heapIndex.
+    /// </summary>
+    /// <returns></returns>
     public T RemoveFirst()
     {
         T firstItem = items[0];
@@ -32,11 +53,18 @@ public class Heap<T> where T : IHeapItem<T>
         return firstItem;
     }
 
+    /// <summary>
+    /// Updates the item.
+    /// </summary>
+    /// <param name="item">the item that is updated.</param>
     public void UpdateItem(T item)
     {
         SortUp(item);
     }
     
+    /// <summary>
+    /// Returns the CurrenItemCount.
+    /// </summary>
     public int Count
     {
         get
@@ -45,11 +73,20 @@ public class Heap<T> where T : IHeapItem<T>
         }
     }
 
+    /// <summary>
+    /// Checks if the heapIndex contains the item.
+    /// </summary>
+    /// <param name="item">The item that is searched for.</param>
+    /// <returns></returns>
     public bool Contains(T item)
     {
         return Equals(items[item.HeapIndex], item);
     }
 
+    /// <summary>
+    /// Sorts downwards.
+    /// </summary>
+    /// <param name="item">The item that is sorted.</param>
     void SortDown(T item)
     {
         while (true)
@@ -88,6 +125,10 @@ public class Heap<T> where T : IHeapItem<T>
         }
     }
 
+    /// <summary>
+    /// Sorts upwards.
+    /// </summary>
+    /// <param name="item">The item that is sorted.</param>
     void SortUp(T item)
     {
         int parentIndex = (item.HeapIndex - 1) / 2;
@@ -108,6 +149,11 @@ public class Heap<T> where T : IHeapItem<T>
         }
     }
 
+    /// <summary>
+    /// Swaps the two items.
+    /// </summary>
+    /// <param name="itemA">The first item.</param>
+    /// <param name="itemB">The second item.</param>
     void Swap(T itemA, T itemB)
     {
         items[itemA.HeapIndex] = itemB;

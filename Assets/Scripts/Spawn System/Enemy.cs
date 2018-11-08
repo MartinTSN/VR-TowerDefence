@@ -1,32 +1,67 @@
-﻿using System.Collections;
+﻿/*
+
+            Handles all logic for enemies.
+
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A script that is put on an enemy.
+/// </summary>
 public class Enemy : MonoBehaviour
 {
     const float minPathUpdateTime = .2f;
     const float pathUpdateMoveThreshold = .5f;
 
-
+    /// <summary>
+    /// The prefab of the healthbar object.
+    /// </summary>
     public GameObject healthBarPrefab;
+    /// <summary>
+    /// The Healthbar object.
+    /// </summary>
     GameObject healthBar;
 
+    /// <summary>
+    /// The amount of Health that the enemy has.
+    /// </summary>
     public float health = 20f;
+    /// <summary>
+    /// The amount of health that the enemy currently has.
+    /// </summary>
     float currentHealth;
-
+    /// <summary>
+    /// How much money is gained from killing it.
+    /// </summary>
     public float worth = 4f;
-
-    public Transform target;
-    public float moveSpeed = 1f;
-    public float turnSpeed = 3;
-    public float turnDst = 5;
-
+    /// <summary>
+    /// How much damage the enemy does.
+    /// </summary>
     public float damage = 5f;
 
-    Paths path;
-    //Vector3[] path;
-    //int targetIndex;
+    /// <summary>
+    /// The Target for the enemy. (usually the "Base" object)
+    /// </summary>
+    public Transform target;
+    /// <summary>
+    /// How fast the enemy moves.
+    /// </summary>
+    public float moveSpeed = 1f;
+    /// <summary>
+    /// How fast the enemy turns conors.
+    /// </summary>
+    public float turnSpeed = 3;
+    /// <summary>
+    /// The turn distance.
+    /// </summary>
+    public float turnDst = 5;
 
+    /// <summary>
+    /// The path that the enemy takes.
+    /// </summary>
+    Paths path;
 
     void Start()
     {
@@ -40,6 +75,10 @@ public class Enemy : MonoBehaviour
         healthBar.SetActive(false);
     }
 
+    /// <summary>
+    /// Used when the enemy is hit.
+    /// </summary>
+    /// <param name="damage">How much damage the enemy takes.</param>
     public void Hurt(float damage)
     {
         healthBar.SetActive(true);
@@ -61,6 +100,11 @@ public class Enemy : MonoBehaviour
         pivot.localScale = scale;
     }
 
+    /// <summary>
+    /// Used when a path is found.
+    /// </summary>
+    /// <param name="waypoints">The waypoints for the enemy</param>
+    /// <param name="pathSuccessful">If it found a path</param>
     public void OnPathFound(Vector3[] waypoints, bool pathSuccessful)
     {
         if (pathSuccessful)
@@ -71,6 +115,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Used to make the enemy follow the found path.
+    /// </summary>
     IEnumerator FollowPath()
     {
         bool followingPath = true;
@@ -111,56 +158,4 @@ public class Enemy : MonoBehaviour
             path.DrawWithGizmos();
         }
     }
-
-
-    //public void OnDrawGizmos()
-    //{
-    //    if (path != null)
-    //    {
-    //        for (int i = targetIndex; i < path.Length; i++)
-    //        {
-    //            Gizmos.color = Color.red;
-    //            Gizmos.DrawCube(path[i], Vector3.one);
-
-    //            if (i == targetIndex)
-    //            {
-    //                Gizmos.DrawLine(transform.position, path[i]);
-    //            }
-    //            else
-    //            {
-    //                Gizmos.DrawLine(path[i - 1], path[i]);
-    //            }
-    //        }
-    //    }
-    //}
-
-    //IEnumerator FollowPath()
-    //{
-    //    Vector3 currentWaypoint = path[0];
-    //    while (true)
-    //    {
-    //        if (transform.position == currentWaypoint)
-    //        {
-    //            targetIndex++;
-    //            if (targetIndex >= path.Length)
-    //            {
-    //                yield break;
-    //            }
-    //            currentWaypoint = path[targetIndex];
-    //        }
-    //        transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, moveSpeed * Time.deltaTime);
-    //        yield return null;
-    //    }
-    //}
-
-    //public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
-    //{
-    //    if (pathSuccessful)
-    //    {
-    //        path = newPath;
-    //        targetIndex = 0;
-    //        StopCoroutine("FollowPath");
-    //        StartCoroutine("FollowPath");
-    //    }
-    //}
 }

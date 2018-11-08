@@ -336,7 +336,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Wave 0/2
+  m_Text: Wave 0/0
 --- !u!114 &114120808980418704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1027,7 +1027,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Basic Tower \n40 units"
+  m_Text: "Basic Tower \n30 units"
 --- !u!114 &114970497709853674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1323,7 +1323,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1, y: 6}
+  m_AnchoredPosition: {x: 0, y: 6}
   m_SizeDelta: {x: 319, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224682683009890862
