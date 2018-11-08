@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f86216e5dc3ec214ab3ee415d688d8b9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - controllerAction: {fileID: 11400000, guid: b4ca14b92ae6e6240852dd4b1caaa9c5, type: 2}
+  - moneyText: {instanceID: 0}
+  - basicTowerPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
