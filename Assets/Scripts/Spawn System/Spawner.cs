@@ -50,6 +50,10 @@ public class Spawner : MonoBehaviour
     /// Has the startWave button been clicked.
     /// </summary>
     public bool IsButtonClicked = false;
+    /// <summary>
+    /// used to check if you lost and stops spawning enemies.
+    /// </summary>
+    public bool endWave = false;
 
     void Awake()
     {
@@ -68,7 +72,7 @@ public class Spawner : MonoBehaviour
     /// <summary>
     /// Gets the amount of waves.
     /// </summary>
-    void GetWaves()
+    public void GetWaves()
     {
         int child = 0;
 
@@ -99,11 +103,15 @@ public class Spawner : MonoBehaviour
     /// </summary>
     IEnumerator StartNextWave()
     {
+
         foreach (WaveSegment segment in waves[currentWave - 1].PatternToWaveSegments())
         {
-            yield return StartCoroutine(SpawnEnemies(segment.spawns));
+            if (endWave != true)
+            {
+                yield return StartCoroutine(SpawnEnemies(segment.spawns));
 
-            yield return new WaitForSeconds(segment.wait);
+                yield return new WaitForSeconds(segment.wait);
+            }
         }
     }
 
@@ -113,13 +121,17 @@ public class Spawner : MonoBehaviour
     /// <param name="enemies">A list of enemies.</param>
     IEnumerator SpawnEnemies(List<int> enemies)
     {
+
         foreach (int enemy in enemies)
         {
-            GameObject newEnemy = Instantiate(enemyPrefabs[enemy], transform.position, Quaternion.identity);
+            if (endWave != true)
+            {
+                GameObject newEnemy = Instantiate(enemyPrefabs[enemy], transform.position, Quaternion.identity);
 
-            newEnemy.GetComponent<Enemy>().target = TargetPoint;
+                newEnemy.GetComponent<Enemy>().target = TargetPoint;
 
-            yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.5f);
+            }
         }
     }
 }

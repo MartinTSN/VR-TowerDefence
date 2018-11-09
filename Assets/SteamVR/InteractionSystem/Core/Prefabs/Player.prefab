@@ -231,9 +231,9 @@ GameObject:
   - component: {fileID: 11450312}
   - component: {fileID: 114000011273627542}
   - component: {fileID: 120447881879056594}
-  - component: {fileID: 114963628835562194}
   - component: {fileID: 114511013336388050}
   - component: {fileID: 114819752980666724}
+  - component: {fileID: 114134516449524252}
   m_Layer: 26
   m_Name: LeftHand
   m_TagString: LeftHand
@@ -252,9 +252,9 @@ GameObject:
   - component: {fileID: 11401046}
   - component: {fileID: 114000011957598740}
   - component: {fileID: 120977102885305402}
-  - component: {fileID: 114182624954492546}
   - component: {fileID: 114657389891169076}
   - component: {fileID: 114520273002559070}
+  - component: {fileID: 114876805373603080}
   m_Layer: 26
   m_Name: RightHand
   m_TagString: RightHand
@@ -447,7 +447,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 1, z: -3}
+  m_LocalPosition: {x: 0.5, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 494198}
@@ -1097,7 +1097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   shiftSpeed: 16
-  showInstructions: 1
+  showInstructions: 0
 --- !u!114 &11479638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1493,27 +1493,25 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &114182624954492546
+--- !u!114 &114134516449524252
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160596}
+  m_GameObject: {fileID: 144230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85fcfb67a9f0c714aba85598a88b837c, type: 3}
+  m_Script: {fileID: 11500000, guid: 72274ea0c113e1d48a234dcf7bbe8814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canvasClickAction: {fileID: 11400000, guid: b4ca14b92ae6e6240852dd4b1caaa9c5, type: 2}
-  cancelBuildingAction: {fileID: 11400000, guid: 56e6a1726b1725149b4155644c34063f,
-    type: 2}
 --- !u!114 &114251220287809236
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110716}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f344f2daa93118e45a245e2ae84d6e28, type: 3}
   m_Name: 
@@ -1581,20 +1579,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f344f2daa93118e45a245e2ae84d6e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114963628835562194
+--- !u!114 &114876805373603080
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 144230}
+  m_GameObject: {fileID: 160596}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85fcfb67a9f0c714aba85598a88b837c, type: 3}
+  m_Script: {fileID: 11500000, guid: 72274ea0c113e1d48a234dcf7bbe8814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canvasClickAction: {fileID: 11400000, guid: b4ca14b92ae6e6240852dd4b1caaa9c5, type: 2}
-  cancelBuildingAction: {fileID: 11400000, guid: 56e6a1726b1725149b4155644c34063f,
-    type: 2}
 --- !u!120 &120026527767949854
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -1693,7 +1689,7 @@ LineRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110716}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

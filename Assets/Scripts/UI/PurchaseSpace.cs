@@ -6,6 +6,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
@@ -59,11 +60,50 @@ public class PurchaseSpace : MonoBehaviour
     /// The spawner object.
     /// </summary>
     public GameObject spawner;
+    public enum MenuStates { Main, Lose, Won };
+    public static MenuStates currentstate;
+
+    public GameObject mainMenu;
+    public GameObject howToMenu;
+    public GameObject wonMenu;
+
+    void Awake()
+    {
+        currentstate = MenuStates.Main;
+    }
 
     void Update()
     {
         moneyText.text = "Money " + Money.amount + " Units";
         waveText.text = "Wave " + spawner.GetComponent<Spawner>().currentWave + "/" + spawner.GetComponent<Spawner>().waves.Count;
+        switch (currentstate)
+        {
+            case MenuStates.Main:
+                mainMenu.SetActive(true);
+                howToMenu.SetActive(false);
+                wonMenu.SetActive(false);
+                break;
+            case MenuStates.Lose:
+                howToMenu.SetActive(true);
+                mainMenu.SetActive(false);
+                wonMenu.SetActive(false);
+                break;
+            case MenuStates.Won:
+                wonMenu.SetActive(true);
+                mainMenu.SetActive(false);
+                howToMenu.SetActive(false);
+                break;
+        }
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void StartAgain()
+    {
+        SceneManager.LoadScene("Level 1");
     }
 
     /// <summary>

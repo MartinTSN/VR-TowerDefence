@@ -70,6 +70,17 @@ public class ThingToProtect : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
+
+            GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (GameObject Enemy in Enemies)
+            {
+                Destroy(Enemy);
+            }
+            GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().endWave = true;
+            CheckIfNoEnemy checkEnemy = new CheckIfNoEnemy();
+            RenderSettings.skybox = null;
+            PurchaseSpace.currentstate = PurchaseSpace.MenuStates.Lose;
         }
     }
 }

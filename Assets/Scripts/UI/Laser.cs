@@ -33,7 +33,10 @@ public class Laser : MonoBehaviour
         {
             if (hit.collider)
             {
-                lr.SetPosition(1, hit.point);
+                if (hit.collider.tag != "MainCamera")
+                {
+                    lr.SetPosition(1, hit.point);
+                }
             }
         }
         else

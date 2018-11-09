@@ -12,11 +12,21 @@ using UnityEngine;
 /// </summary>
 public class CheckIfNoEnemy : MonoBehaviour
 {
+    GameObject spawner;
+
+    void Awake()
+    {
+        spawner = GameObject.FindGameObjectWithTag("Spawner");
+    }
     public void NoEnemy()
     {
-
         if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 1)
         {
+            if (spawner.GetComponent<Spawner>().waves.Count == spawner.GetComponent<Spawner>().currentWave)
+            {
+                print("Click");
+                PurchaseSpace.currentstate = PurchaseSpace.MenuStates.Won;
+            }
             GameObject Rhand = GameObject.FindGameObjectWithTag("RightHand");
             Rhand.GetComponent<LineRenderer>().enabled = true;
             Rhand.GetComponent<CanvasInteract>().enabled = true;
@@ -29,6 +39,7 @@ public class CheckIfNoEnemy : MonoBehaviour
             {
                 Tower.GetComponent<Tower>().enabled = false;
             }
+
         }
     }
 
