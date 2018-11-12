@@ -60,12 +60,14 @@ public class PurchaseSpace : MonoBehaviour
     /// The spawner object.
     /// </summary>
     public GameObject spawner;
-    public enum MenuStates { Main, Lose, Won };
+
+    public enum MenuStates { Main, Buy, Lose, Won };
     public static MenuStates currentstate;
 
     public GameObject mainMenu;
     public GameObject howToMenu;
     public GameObject wonMenu;
+    public GameObject buyMenu;
 
     void Awake()
     {
@@ -82,25 +84,80 @@ public class PurchaseSpace : MonoBehaviour
                 mainMenu.SetActive(true);
                 howToMenu.SetActive(false);
                 wonMenu.SetActive(false);
+                buyMenu.SetActive(false);
+                break;
+            case MenuStates.Buy:
+                buyMenu.SetActive(true);
+                howToMenu.SetActive(false);
+                wonMenu.SetActive(false);
+                mainMenu.SetActive(false);
                 break;
             case MenuStates.Lose:
                 howToMenu.SetActive(true);
                 mainMenu.SetActive(false);
                 wonMenu.SetActive(false);
+                buyMenu.SetActive(false);
                 break;
             case MenuStates.Won:
                 wonMenu.SetActive(true);
                 mainMenu.SetActive(false);
                 howToMenu.SetActive(false);
+                buyMenu.SetActive(false);
                 break;
         }
     }
 
-    public void MainMenu()
+    /// <summary>
+    /// Used when the player exits the buy menu.
+    /// </summary>
+    public void OnMainMenu()
+    {
+        currentstate = MenuStates.Main;
+        if (teleportPoint != null)
+        {
+            Destroy(teleportPoint);
+            teleportPoint = null;
+            Money.amount += 5;
+        }
+        else if (boughtTower != null)
+        {
+            Destroy(boughtTower);
+            boughtTower = null;
+            Money.amount += 30;
+        }
+        else if (Wall != null)
+        {
+            Destroy(Wall);
+            Wall = null;
+            Money.amount += 5;
+        }
+        else if (slowField != null)
+        {
+            Destroy(slowField);
+            slowField = null;
+            Money.amount += 20;
+        }
+    }
+
+    /// <summary>
+    /// Used when the player wants to buy something.
+    /// </summary>
+    public void OnBuyMenu()
+    {
+        currentstate = MenuStates.Buy;
+    }
+
+    /// <summary>
+    /// Used when the player wins.
+    /// </summary>
+    public void MainMenuScreen()
     {
         SceneManager.LoadScene("Main Menu");
     }
 
+    /// <summary>
+    /// Used when the player loses.
+    /// </summary>
     public void StartAgain()
     {
         SceneManager.LoadScene("Level 1");
@@ -168,12 +225,12 @@ public class PurchaseSpace : MonoBehaviour
         }
 
         Wall = Instantiate(WallPrefab, transform.position, Quaternion.identity);
-        Wall.GetComponent<BoxCollider>().enabled = false;
+
         Color color = Wall.GetComponent<Renderer>().material.color;
         color.a = 0.5f;
         Wall.GetComponent<Renderer>().material.color = color;
 
-
+        Wall.GetComponent<BoxCollider>().enabled = false;
 
         Money.amount -= 5;
     }
@@ -210,14 +267,5 @@ public class PurchaseSpace : MonoBehaviour
     {
         spawner.GetComponent<Spawner>().IsButtonClicked = true;
         spawner.GetComponent<Spawner>().GetComponentInParent<Grid>().CreateGrid();
-        Destroy(teleportPoint);
-        teleportPoint = null;
-        Destroy(boughtTower);
-        boughtTower = null;
-        Destroy(Wall);
-        Wall = null;
-        Destroy(slowField);
-        slowField = null;
-
     }
 }

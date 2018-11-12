@@ -78,7 +78,6 @@ public class ThingToProtect : MonoBehaviour
                 Destroy(Enemy);
             }
             GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().endWave = true;
-            CheckIfNoEnemy checkEnemy = new CheckIfNoEnemy();
             RenderSettings.skybox = null;
             PurchaseSpace.currentstate = PurchaseSpace.MenuStates.Lose;
         }

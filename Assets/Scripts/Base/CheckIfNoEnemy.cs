@@ -10,21 +10,17 @@ using UnityEngine;
 /// <summary>
 /// A script that is put on the "Base" object. Checks if there are any remaining enemies and ends the round.
 /// </summary>
-public class CheckIfNoEnemy : MonoBehaviour
+public class CheckIfNoEnemy
 {
-    GameObject spawner;
+    Spawner spawner;
 
-    void Awake()
-    {
-        spawner = GameObject.FindGameObjectWithTag("Spawner");
-    }
     public void NoEnemy()
     {
         if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 1)
         {
-            if (spawner.GetComponent<Spawner>().waves.Count == spawner.GetComponent<Spawner>().currentWave)
+            spawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>();
+            if (spawner.waves.Count == spawner.currentWave)
             {
-                print("Click");
                 PurchaseSpace.currentstate = PurchaseSpace.MenuStates.Won;
             }
             GameObject Rhand = GameObject.FindGameObjectWithTag("RightHand");
@@ -42,5 +38,4 @@ public class CheckIfNoEnemy : MonoBehaviour
 
         }
     }
-
 }
