@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 114016051462353166}
   m_Layer: 5
   m_Name: Waves
-  m_TagString: Untagged
+  m_TagString: Text
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 114832282712387070}
   m_Layer: 5
   m_Name: Money
-  m_TagString: Untagged
+  m_TagString: Text
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

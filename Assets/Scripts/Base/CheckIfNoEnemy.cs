@@ -30,6 +30,10 @@ public class CheckIfNoEnemy
             Lhand.GetComponent<LineRenderer>().enabled = true;
             Lhand.GetComponent<CanvasInteract>().enabled = true;
             Rhand.GetComponentInChildren<Attatch>().UnSet();
+            foreach (var Text in GameObject.FindGameObjectsWithTag("Text"))
+            {
+                Text.SetActive(true);
+            }
 
             foreach (GameObject Tower in GameObject.FindGameObjectsWithTag("Tower"))
             {

@@ -93,6 +93,8 @@ public class PurchaseSpace : MonoBehaviour
                 mainMenu.SetActive(false);
                 break;
             case MenuStates.Lose:
+                moneyText.gameObject.SetActive(false);
+                waveText.gameObject.SetActive(false);
                 howToMenu.SetActive(true);
                 mainMenu.SetActive(false);
                 wonMenu.SetActive(false);
@@ -103,6 +105,8 @@ public class PurchaseSpace : MonoBehaviour
                 mainMenu.SetActive(false);
                 howToMenu.SetActive(false);
                 buyMenu.SetActive(false);
+                moneyText.gameObject.SetActive(false);
+                waveText.gameObject.SetActive(false);
                 break;
         }
     }

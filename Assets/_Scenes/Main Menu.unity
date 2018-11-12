@@ -460,6 +460,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114326817645877812, guid: 9ee30fe8a44f36c4b8c48f6c906a12fd,
+        type: 2}
+      propertyPath: m_Text
+      value: How to Play
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ee30fe8a44f36c4b8c48f6c906a12fd, type: 2}
   m_IsPrefabAsset: 0
